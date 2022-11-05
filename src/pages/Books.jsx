@@ -30,7 +30,7 @@ const Books = ({ books: initalBooks }) => {
                 (a.salePrice || a.originalPrice)
             )
         );
-      case "RATING":
+      case  "RATING":
         return setBooks(books.slice().sort((a, b) => b.rating - a.rating));
       default:
         break;
