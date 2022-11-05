@@ -1,4 +1,5 @@
 import './index.css';
+import React, { useState } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -6,8 +7,16 @@ import Home from './pages/Home';
 import Books from './pages/Books';
 import { books } from './data';
 import BookInfo from './pages/BookInfo';
+import Cart from './pages/Cart';
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  function addItemToCart() {
+
+  }
+
+
   return (
     <Router>
 
@@ -15,7 +24,8 @@ function App() {
       <Nav />
       <Route path="/" exact component={Home} />
       <Route path="/books" exact render={() => <Books books={books} />} />
-      <Route path='/books/:id' exact render={() => <BookInfo books={books} />} />
+      <Route path='/books/:id' exact render={() => <BookInfo books={books} addItemToCart={addItemToCart} />} />
+      <Route path='/cart' render={() => <Cart books={books} />} />
       <Footer />
     </div>
     </Router>
