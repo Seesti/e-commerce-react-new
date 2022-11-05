@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import BestBooks from "../components/ui/BestBooks";
 
-const BookInfo = ({ books, addItemToCart }) => {
+const BookInfo = ({ books, addToCart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
 
@@ -53,7 +53,7 @@ const BookInfo = ({ books, addItemToCart }) => {
                     voluptas.
                   </p>
                 </div>
-                <button className="btn" onClick={() => addItemToCart(book)}>
+                <button className="btn" onClick={() => addToCart(book)}>
                   Add to Cart
                 </button>
               </div>
