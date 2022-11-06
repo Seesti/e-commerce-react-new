@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
 
 const Cart = ({ cart, updateCart, removeItem, totals }) => {
+  const total = () => {
+    let price = 0;
+    cart.forEach((item) => {
+      price += +(
+        (item.salePrice || item.originalPrice) * item.quantity
+      ).toFixed(2);
+    });
+    return price
+  }
   return (
     <div id="books__body">
       <main id="books__main">
@@ -18,7 +27,7 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
                 <span className="cart__total">Price</span>
               </div>
               <div className="cart__body">
-                {cart.map((item) => {
+                {cart?.map((item) => {
                   const itemPrice = item.salePrice || item.originalPrice;
                   return (
                     <div className="cart__item" key={item.id}>
@@ -76,15 +85,15 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
               <div className="total">
                 <div className="total__item total__sub-total">
                   <span>Subtotal</span>
-                  <span>${totals.subtotal.toFixed(2)}</span>
+                  <span>${total() * 0.9}</span>
                 </div>
                 <div className="total__item total__tax">
                   <span>Tax</span>
-                  <span>${totals.tax.toFixed(2)}</span>
+                  <span>${total() * 0.1}</span>
                 </div>
                 <div className="total__item total__price">
                   <span>Total</span>
-                  <span>${totals.total.toFixed(2)}</span>
+                  <span>${total()}</span>
                 </div>
                 <button className="btn btn__checkout no-cursor" onClick={() => alert(`Haven't got around to doing this :(`)}>
                   Proceed to checkout
